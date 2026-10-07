@@ -23,6 +23,9 @@ const Navbar = () => {
     ...(isSignedIn && role === "customer"
       ? [{ href: "/customer/profile", label: "Customer Profile" }]
       : []),
+    ...(isSignedIn && role === "admin"
+      ? [{ href: "/admin/contactleads", label: "Contact Leads" }]
+      : []),
   ];
 
   return (
@@ -37,14 +40,14 @@ const Navbar = () => {
             className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-full ${
               isActive
                 ? "text-white"
-                : "text-neutral-600 hover:text-neutral-900"
+                : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
             }`}
           >
             {/* The Active Sliding Cursor Effect */}
             {isActive && (
               <motion.span
                 layoutId="activeNavIndicator"
-                className="absolute inset-0 bg-neutral-900 rounded-full -z-10"
+                className="absolute inset-0 bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-900 rounded-full -z-10"
                 transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}

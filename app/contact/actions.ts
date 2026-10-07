@@ -1,7 +1,7 @@
-// app/contact/actions.ts
 "use server";
 
 import { neon } from "@neondatabase/serverless";
+import { revalidatePath } from "next/cache";
 
 export async function submitContactForm(prevState: any, formData: FormData) {
   const name = formData.get("name") as string;
@@ -20,6 +20,9 @@ export async function submitContactForm(prevState: any, formData: FormData) {
       INSERT INTO contact_leads (name, email, message) 
       VALUES (${name}, ${email}, ${message})
     `;
+
+    // Tells Next.js to clear the cache for the admin leads page
+    revalidatePath("/admin/leads");
 
     return { success: true, error: null };
   } catch (error) {
