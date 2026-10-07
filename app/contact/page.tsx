@@ -1,16 +1,19 @@
+// app/contact/page.tsx (or your component file)
 "use client";
 
-import React, { FormEvent, useState } from "react";
+import React, { useActionState } from "react";
+import { submitContactForm } from "./actions";
+
+const initialState = {
+  success: false,
+  error: null as string | null,
+};
 
 const ContactUs: React.FC = () => {
-  const [submitted, setSubmitted] = useState<boolean>(false);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Add your form submission logic here (e.g., fetch API route call)
-    console.log("Form submitted successfully!");
-    setSubmitted(true);
-  };
+  const [state, formAction, isPending] = useActionState(
+    submitContactForm,
+    initialState,
+  );
 
   return (
     <div className="min-h-screen max-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center align-middle space-y-12">
@@ -76,24 +79,33 @@ const ContactUs: React.FC = () => {
 
         {/* Right Side: Interactive Form Block */}
         <div className="p-8 flex flex-col justify-center">
-          {submitted ? (
+          {state.success ? (
             <div className="text-center py-12 space-y-4">
               <div className="text-5xl">🎉</div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Thank You!
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                Your message has been sent. We'll be in touch shortly.
+                Your interest in our company has been registered.
+                <br />
+                We'll be in touch shortly.
               </p>
+              {/* To reset state/form, you can reload or add a reset mechanism */}
               <button
-                onClick={() => setSubmitted(false)}
-                className="mt-4 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
+                onClick={() => window.location.reload()}
+                className="mt-4 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer"
               >
                 Send another message
               </button>
             </div>
           ) : (
-            <form className="space-y-5" onSubmit={handleSubmit}>
+            <form className="space-y-5" action={formAction}>
+              {state.error && (
+                <div className="p-3 text-sm text-red-600 bg-red-50 rounded-lg">
+                  {state.error}
+                </div>
+              )}
+
               <div>
                 <label
                   htmlFor="name"
@@ -148,9 +160,10 @@ const ContactUs: React.FC = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200"
+                  disabled={isPending}
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 disabled:opacity-50 cursor-pointer"
                 >
-                  Send Message
+                  {isPending ? "Sending..." : "Send Message"}
                 </button>
               </div>
             </form>
