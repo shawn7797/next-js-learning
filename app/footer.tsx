@@ -107,7 +107,9 @@ const Footer: React.FC = () => {
 
         {/* Bottom Utility Bar */}
         <div className="mt-12 pt-6 border-t border-gray-100 dark:border-gray-700/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-400 dark:text-gray-500">
-          <div>© {new Date().getFullYear()} AcmeCorp. All rights reserved.</div>
+          <div>
+            © {new Date().getFullYear()} Shawn Mathias. All rights reserved.
+          </div>
           <div className="flex space-x-6">
             <a
               href="#"

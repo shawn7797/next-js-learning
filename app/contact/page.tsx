@@ -13,20 +13,21 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center space-y-12">
-      
+    <div className="min-h-screen max-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center align-middle space-y-12">
       {/* Main Container */}
       <div className="max-w-4xl mx-auto w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2">
-        
         {/* Left Side: Indigo Info Block */}
         <div className="bg-indigo-600 p-8 text-white flex flex-col justify-between">
           <div>
-            <h2 className="text-3xl font-extrabold tracking-tight">Get in Touch</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight">
+              Get in Touch
+            </h2>
             <p className="mt-4 text-indigo-100 max-w-sm">
-              Have questions, feedback, or a project in mind? Drop us a line and our team will get back to you within 24 hours.
+              Have questions, feedback, or a project in mind? Drop us a line and
+              our team will get back to you within 24 hours.
             </p>
           </div>
-          
+
           {/* Contact Methods */}
           <div className="mt-8 space-y-6">
             <div className="flex items-center space-x-4">
@@ -34,8 +35,12 @@ const ContactUs: React.FC = () => {
                 📍
               </div>
               <div>
-                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">Office</h4>
-                <p className="text-sm text-white">123 Innovation Way, Tech Suite 500</p>
+                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">
+                  Office
+                </h4>
+                <p className="text-sm text-white">
+                  123 Innovation Way, Tech Suite 500
+                </p>
               </div>
             </div>
 
@@ -44,7 +49,9 @@ const ContactUs: React.FC = () => {
                 📞
               </div>
               <div>
-                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">Phone</h4>
+                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">
+                  Phone
+                </h4>
                 <p className="text-sm text-white">+1 (555) 019-2834</p>
               </div>
             </div>
@@ -54,7 +61,9 @@ const ContactUs: React.FC = () => {
                 ✉️
               </div>
               <div>
-                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">Email</h4>
+                <h4 className="text-xs font-semibold text-indigo-200 uppercase tracking-wider">
+                  Email
+                </h4>
                 <p className="text-sm text-white">support@example.com</p>
               </div>
             </div>
@@ -70,11 +79,13 @@ const ContactUs: React.FC = () => {
           {submitted ? (
             <div className="text-center py-12 space-y-4">
               <div className="text-5xl">🎉</div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Thank You!</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Thank You!
+              </h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Your message has been sent. We'll be in touch shortly.
               </p>
-              <button 
+              <button
                 onClick={() => setSubmitted(false)}
                 className="mt-4 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline"
               >
@@ -84,7 +95,10 @@ const ContactUs: React.FC = () => {
           ) : (
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Full Name
                 </label>
                 <input
@@ -98,7 +112,10 @@ const ContactUs: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Email Address
                 </label>
                 <input
@@ -112,7 +129,10 @@ const ContactUs: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
                   Your Message
                 </label>
                 <textarea
@@ -136,7 +156,6 @@ const ContactUs: React.FC = () => {
             </form>
           )}
         </div>
-
       </div>
     </div>
   );

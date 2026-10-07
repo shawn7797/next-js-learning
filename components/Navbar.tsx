@@ -20,6 +20,9 @@ const Navbar = () => {
     ...(isSignedIn && role === "vendor"
       ? [{ href: "/vendor/profile", label: "Vendor Profile" }]
       : []),
+    ...(isSignedIn && role === "customer"
+      ? [{ href: "/customer/profile", label: "Customer Profile" }]
+      : []),
   ];
 
   return (
